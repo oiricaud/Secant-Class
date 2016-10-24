@@ -24,10 +24,11 @@
 function root = Secant_Method_Oscar_I_Ricaud(x0,x1,error_bd, max_iterate)
 format short e
 error = 1;
+rel_error = 1;
 fx0 = f(x0);
 it_count = 0;
 iteration = [it_count x0 fx0]
-disp('[n, x, f(x), error]')
+disp('[n, x, f(x), error, rel_error]')
 
 while abs(error) > error_bd & it_count<= max_iterate
 	it_count = it_count + 1;
@@ -38,9 +39,10 @@ while abs(error) > error_bd & it_count<= max_iterate
 	end
 	x2 = x1 - fx1*(x1-x0)/(fx1-fx0);
 	error = x2 - x1;
+     rel_error = error / x1;
 % Internal print of secant method. Tap the carriage
 % return key to continue the computation.
-iteration = [it_count x1 fx1 error]
+iteration = [it_count x1 fx1 error, rel_error]
 pause
 x0 = x1;
 x1 = x2;
